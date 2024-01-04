@@ -132,8 +132,7 @@ select *from cte
 
 /*20.Create a stored procedure that takes a branch name as input and returns the 
 average quantity of products sold in transactions for that branch.*/
-create or replace procedure get_avgs( in p_branch varchar(20) )
-
+create or replace procedure get_avgs( in p_branch varchar(20),inout avgs float )
 language plpgsql
 as $$
 declare
@@ -143,7 +142,7 @@ begin
    having branch=p_branch;
 end;$$
  
- call avgs('A',0)
+ call get_avgs('A',0)
 
 
 --21.Rank the transactions based on the total amount in descending order. Include the invoice_id, total, and the rank of each transaction.
